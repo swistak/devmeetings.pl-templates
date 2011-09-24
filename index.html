@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Rendering Test</title>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+    <script type="text/javascript" src="date.js"></script>
+    <script src="mustache.js"></script>
+    <script src="partial.js"></script>
+</head>
+<body>
+  <div id="time"></div>
+
+  <script>
+      timePart = Partial();
+      timePart.
+              renderTo($('#time')).
+              setTemplate('<span>And the time is: </span><strong>{{time}}</strong>');
+
+      var showTime = function(){
+        var now = new Date();
+        timePart.set({time:  now.toString()});
+
+        setTimeout(showTime, 1000);
+      };
+
+      showTime();
+  </script>
+</body>
+</html>
